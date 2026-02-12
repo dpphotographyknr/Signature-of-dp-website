@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signature Of DP</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#0c0c0c;color:#fff;overflow-x:hidden}
+
+/* Cinematic Intro */
+#intro{
+position:fixed;
+width:100%;height:100vh;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+animation:fadeOut 2s ease 3s forwards;
+}
+#intro h1{
+font-family:'Quicksand',sans-serif;
+font-size:3rem;
+letter-spacing:4px;
+color:#d4af37;
+animation:logoAnim 3s ease forwards;
+}
+@keyframes logoAnim{
+0%{opacity:0;transform:scale(0.8)}
+100%{opacity:1;transform:scale(1)}
+}
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden}
+}
+
+/* Background Video */
+.video-bg{
+position:relative;
+height:100vh;
+overflow:hidden;
+}
+.video-bg video{
+position:absolute;
+top:50%;left:50%;
+min-width:100%;min-height:100%;
+transform:translate(-50%,-50%);
+object-fit:cover;
+z-index:-1;
+filter:brightness(40%);
+}
+.hero-content{
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+.hero-content h2{
+font-family:'Quicksand',sans-serif;
+font-size:3rem;
+color:#d4af37;
+}
+.hero-content p{margin-top:15px;font-weight:300}
+
+/* Glass Section */
+.section{
+padding:80px 20px;
+text-align:center;
+backdrop-filter:blur(10px);
+background:rgba(255,255,255,0.05);
+margin:40px;
+border-radius:20px;
+border:1px solid rgba(212,175,55,0.3);
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+.section.show{opacity:1;transform:translateY(0)}
+.section h3{
+font-family:'Quicksand',sans-serif;
+color:#d4af37;
+margin-bottom:30px;
+}
+
+.service{
+margin:15px;
+padding:15px 30px;
+border:1px solid #d4af37;
+border-radius:30px;
+display:inline-block;
+cursor:pointer;
+transition:0.4s;
+}
+.service:hover{background:#d4af37;color:#000}
+
+/* Gallery Slider */
+.gallery-container{
+position:relative;
+max-width:900px;
+margin:auto;
+overflow:hidden;
+border-radius:20px;
+}
+.gallery-slide{
+display:none;
+}
+.gallery-slide img{
+width:100%;
+border-radius:20px;
+}
+
+/* Enquiry Popup */
+.popup{
+position:fixed;
+top:50%;left:50%;
+transform:translate(-50%,-50%);
+background:#111;
+padding:40px;
+border-radius:20px;
+display:none;
+text-align:center;
+border:1px solid #d4af37;
+z-index:10000;
+}
+.popup h4{color:#d4af37;margin-bottom:15px}
+.popup button{
+margin-top:20px;
+padding:10px 25px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+background:#d4af37;
+color:#000;
+}
+
+footer{text-align:center;padding:30px;color:#888}
+</style></head>
+<body><div id="intro"><h1>Signature Of DP</h1></div><section class="video-bg">
+<video autoplay muted loop>
+<source src="YOUR_BACKGROUND_VIDEO_LINK_HERE" type="video/mp4">
+</video>
+<div class="hero-content">
+<h2>Luxury Photography Studio</h2>
+<p>Capturing Timeless Moments with Elegance</p>
+</div>
+</section><div class="section reveal">
+<h3>Our Services</h3>
+<div class="service" onclick="openPopup()">Photoshoot</div>
+<div class="service" onclick="openPopup()">Reel Shoot</div>
+<div class="service" onclick="openPopup()">Birthday Shoot</div>
+<div class="service" onclick="openPopup()">Video Edit</div>
+<div class="service" onclick="openPopup()">Photo Edit</div>
+</div><div class="section reveal">
+<h3>Premium Gallery</h3>
+<div class="gallery-container">
+<div class="gallery-slide"><img src="YOUR_IMAGE1_LINK"></div>
+<div class="gallery-slide"><img src="YOUR_IMAGE2_LINK"></div>
+<div class="gallery-slide"><img src="YOUR_IMAGE3_LINK"></div>
+</div>
+</div><div class="popup" id="popup">
+<h4>Contact Us</h4>
+<p>📞 9946284963</p>
+<p>📷 @signature_of_dp</p>
+<button onclick="closePopup()">Close</button>
+</div><footer>
+© 2026 Signature Of DP. All Rights Reserved.
+</footer><script>
+function openPopup(){
+document.getElementById('popup').style.display='block';
+}
+function closePopup(){
+document.getElementById('popup').style.display='none';
+}
+
+/* Scroll Reveal */
+window.addEventListener('scroll',()=>{
+document.querySelectorAll('.section').forEach(sec=>{
+const top=sec.getBoundingClientRect().top;
+if(top<window.innerHeight-100){sec.classList.add('show')}
+})
+})
+
+/* Gallery Slider */
+let slideIndex=0;
+showSlides();
+function showSlides(){
+let slides=document.getElementsByClassName("gallery-slide");
+for(let i=0;i<slides.length;i++){
+slides[i].style.display="none";
+}
+slideIndex++;
+if(slideIndex>slides.length){slideIndex=1}
+slides[slideIndex-1].style.display="block";
+setTimeout(showSlides,3000);
+}
+</script></body>
+</html>
